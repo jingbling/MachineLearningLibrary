@@ -1,0 +1,91 @@
+import mlParser.parseTree;
+import utilities.createClassFile;
+import weka.classifiers.Classifier;
+import weka.core.Instances;
+import wekaInterface.createWekaStructure;
+import wekaInterface.runWekaModelClassifier;
+
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: Jing
+ * Date: 11/25/12
+ * Time: 8:37 PM
+ * Test file to create J48 tree classifier
+ */
+public class runClassifier {
+
+    public static void main(String[] args) throws Exception {
+
+//        String fileInput = "WekaOutLargeNum.txt";
+//        String fileInput = "WekaOutputStatesRandomTree.txt";
+//        String fileOutput = "TreeClassifier.java";
+        String fileInput="null";
+        String fileOutput="null";
+        String classifierName="null";
+//        List<String> classifierArgs = new ArrayList<String>();
+        String[] classifierArgs = new String[args.length-3];
+        Instances wekaData=null;
+        String wekaOutput="null";
+        StringBuffer parsedTree;
+        Classifier wekaClassifier;
+//        StringBuffer createdTree;
+        Integer icount=3;
+        createWekaStructure WekaStructure = new createWekaStructure();
+        runWekaModelClassifier CreateWekaClassifier = new runWekaModelClassifier();
+        parseTree CreateParsedTree = new parseTree();
+        createClassFile NewOutputCodeFile = new createClassFile();
+
+        try {
+            // arg[0] = input file name
+            fileInput = args[0].toString();
+            fileOutput = args[1].toString();
+            classifierName = args[2].toString();
+            // save remaining arguments to pass into classifier call
+
+//            System.out.println("Input args: "+args[0].toString()+" "+args[1].toString()+" "+args[2].toString());
+
+            for (icount = 3; icount<=args.length-1; icount++) {
+//                System.out.println("running for loop: "+icount.toString() + " of "+(args.length-3));
+                classifierArgs[icount-3] = args[icount];
+//                System.out.println("classifierArgs: " + classifierArgs[icount - 3].toString());
+            }
+        } catch (Exception e) {
+            System.err.println("Error with input arguments");
+//            usage();
+            System.exit(1);
+        }
+
+        wekaData = WekaStructure.CreateWekaDataStructure(fileInput);
+
+        wekaClassifier = CreateWekaClassifier.J48(wekaData, classifierArgs);
+
+        parsedTree = CreateParsedTree.J48(wekaClassifier.toString());
+
+//        System.out.println("parsedTree = " + parsedTree.toString());
+//
+//        // put some random args for now
+        //String[] tempArgs = {"int","numLeaves","String","blah","double","somenumber"};
+        String[] attributeArgs = WekaStructure.GetAttributeArgs(wekaData);
+//
+        // print attributes <debug>
+//        System.out.println("Num attributes: " + wekaData.numAttributes());
+//        for (icount = 0;icount < wekaData.numAttributes(); icount++) {
+//            System.out.println("Attribute " + icount + ": " + wekaData.attribute(icount));
+//        }
+//        System.out.println("
+//        System.out.println(", actual: " + wekaData.classAttribute().value((int) wekaData.instance(0).classValue()));
+
+        NewOutputCodeFile.writeJavaFile(parsedTree, attributeArgs, fileOutput);
+
+//
+//        // Call subroutine to parse input file
+//        createdTree = ParseTree(fileInput, 2);
+//        System.out.println(createdTree);
+
+        // Call subroutine to write output file
+//        writeJavaFile(createdTree, args, fileOutput);
+
+    }
+
+}
