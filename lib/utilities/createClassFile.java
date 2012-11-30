@@ -53,7 +53,7 @@ public class createClassFile {
             out.write("public class "+ FilenameUtils.removeExtension(outputFile)+ String.format("{ %n"));
             out.write("    public "+ FilenameUtils.removeExtension(outputFile)+ String.format("{ %n"));
             out.write("        //constructor - empty for now"+String.format("%n    }%n"));
-            out.write("    public static String RunTree(");
+            out.write("    public String RunTree(");
             // Write parameters as variable declarations, expected in [type name] pairs
             // e.g. double length
             for (icount=0;icount<parameters.length; icount=icount+2) {
@@ -66,7 +66,6 @@ public class createClassFile {
             out.write(") {" + String.format("%n"));
 
             out.write(finalOutput.toString());
-            out.write("        return classifier;"+String.format("%n"));
             out.write("    }"+String.format("%n"));
             out.write("}"+String.format("%n"));
             //Close the output stream

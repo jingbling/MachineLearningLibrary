@@ -2,25 +2,27 @@ public class testLibJ48{
     public testLibJ48{ 
         //constructor - empty for now
     }
-    public static String RunTree(string outlook, double temperature, double humidity, string windy) {
-        if (outlook == "sunny") {
-            if (humidity <= 75) { 
-                classifier = "yes";
-            } 
-            if (humidity > 75) { 
-                classifier = "no";
-            } 
-        }
-        if (outlook == "overcast") { 
-            classifier = "yes";
+    public String RunTree(double sepallength, double sepalwidth, double petallength, double petalwidth) {
+        String classifier;
+        if (petalwidth <= 0.6) { 
+            classifier = "Iris-setosa";
         } 
-        if (outlook == "rainy") {
-            if (windy == "TRUE") { 
-                classifier = "no";
+        if (petalwidth > 0.6) {
+            if (petalwidth <= 1.7) {
+                if (petallength <= 4.9) { 
+                    classifier = "Iris-versicolor";
+                } 
+                if (petallength > 4.9) {
+                    if (petalwidth <= 1.5) { 
+                        classifier = "Iris-virginica";
+                    } 
+                    if (petalwidth > 1.5) { 
+                        classifier = "Iris-versicolor";
+                    } 
+                }
+            }
+            if (petalwidth > 1.7) { 
+                classifier = "Iris-virginica";
             } 
-            if (windy == "FALSE") { 
-                classifier = "yes";
-            } 
-        return classifier;
     }
 }

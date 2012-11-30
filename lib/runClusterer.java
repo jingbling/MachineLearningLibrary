@@ -25,7 +25,7 @@ public class runClusterer {
 //        List<String> classifierArgs = new ArrayList<String>();
         String[] classifierArgs = new String[args.length-2];
         Instances wekaData=null;
-        String wekaOutput="null";
+        String wekaOutput="null", wekaClustererToClassifier="null";
         StringBuffer parsedCode;
         Clusterer wekaClusterer;
 //        StringBuffer createdTree;
@@ -58,7 +58,11 @@ public class runClusterer {
 
         wekaClusterer = CreateWekaClusterer.EM(wekaData, classifierArgs);
 
-        parsedCode = CreateParsedGMM.GMM(wekaClusterer.toString());
+        wekaClustererToClassifier = CreateWekaClusterer.outputClassesToClustererEval(wekaClusterer,wekaData);
+
+        System.out.println("parsed Clusterer to Class = " + wekaClustererToClassifier);
+
+        parsedCode = CreateParsedGMM.GMM(wekaClustererToClassifier);
 
 //        System.out.println("parsedCode = " + parsedTree.toString());
 //

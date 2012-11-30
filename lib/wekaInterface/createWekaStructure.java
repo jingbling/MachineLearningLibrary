@@ -57,14 +57,14 @@ public class createWekaStructure {
             // check third split for attribute type
             if (currentSplitLine[2].equals("relational")) {
                 System.err.println("Error, currently relational attributes are not handled, will return as string");
-                returnAttrArgs[argcount] = "string";
+                returnAttrArgs[argcount] = "String";
             } else if (currentSplitLine[2].equals("numeric")) {
                 returnAttrArgs[argcount] = "double";
             } else if (currentSplitLine[2].equals("date")) {
                 returnAttrArgs[argcount] = "Date";
             } else {
                 // treat all others as string
-                returnAttrArgs[argcount] = "string";
+                returnAttrArgs[argcount] = "String";
             }
             // next save attribute name
             returnAttrArgs[argcount+1]= currentSplitLine[1];

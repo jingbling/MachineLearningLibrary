@@ -22,6 +22,9 @@ public class parseTree {
 
         ArrayList BayesArrayList = new ArrayList();
 
+        //define needed variables
+        modLine.append("String classifier;"+String.format("%n"));
+
 //        System.out.println("classifier chosen: "+ classifier + " found = "+ TreeArrayList.contains(classifier));
 //        System.out.println("inputSplit.length: "+ inputSplit.length );
 

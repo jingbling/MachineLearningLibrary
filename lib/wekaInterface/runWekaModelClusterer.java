@@ -2,6 +2,7 @@ package wekaInterface;
 
 import weka.clusterers.Clusterer;
 import weka.clusterers.EM;
+import weka.clusterers.ClusterEvaluation;
 import weka.core.Instances;
 
 /**
@@ -41,5 +42,14 @@ public class runWekaModelClusterer {
 
         return clu;
 
+    }
+
+    public String outputClassesToClustererEval(Clusterer wekaClusterer, Instances wekaData) throws Exception {
+        // This evaluates the clusterer and fits it to existing classes
+        ClusterEvaluation eval = new ClusterEvaluation();
+        eval.setClusterer(wekaClusterer);
+        eval.evaluateClusterer(wekaData);
+
+        return eval.clusterResultsToString();
     }
 }
