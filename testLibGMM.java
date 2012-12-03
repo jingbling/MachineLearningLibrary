@@ -2,7 +2,7 @@ public class testLibGMM{
     public testLibGMM{ 
         //constructor - empty for now
     }
-    public String RunTree(double sepallength, double sepalwidth, double petallength, double petalwidth) {
+    public static String RunTree(double sepallength, double sepalwidth, double petallength, double petalwidth) {
         String classifier;
         Integer i = 0;
         Integer bestZMatchIndex = 0;

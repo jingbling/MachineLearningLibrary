@@ -10,8 +10,10 @@ import wekaInterface.runWekaModelClusterer;
  * User: Jing
  * Date: 11/25/12
  * Time: 9:09 PM
- * To change this template use File | Settings | File Templates.
- */
+ * Test file to run cluster code generator
+ *  Example input: C:\Users\Jing\VMWareShare\ActDataSubject1_train.arff ActDataSubj1Cluster.java -I 100 -N 3 -M 1.0E-6 -S 100
+ *  or C:\Users\Jing\Documents\MSENGROL\_2012Fall_E299\WekaSource\data\iris.arff testLibGMM.java -I 100 -N 3 -M 1.0E-6 -S 100
+        */
 public class runClusterer {
 
     public static void main(String[] args) throws Exception {
@@ -41,7 +43,7 @@ public class runClusterer {
             fileOutput = args[1].toString();
             // save remaining arguments to pass into classifier call
 
-            System.out.println("Input args: "+args[0].toString()+" "+args[1].toString()+" "+args[2].toString());
+//            System.out.println("Input args: "+args[0].toString()+" "+args[1].toString()+" "+args[2].toString());
 
             for (icount = 2; icount<=args.length-1; icount++) {
 //                System.out.println("running for loop: "+icount.toString() + " of "+(args.length-3));
@@ -60,7 +62,7 @@ public class runClusterer {
 
         wekaClustererToClassifier = CreateWekaClusterer.outputClassesToClustererEval(wekaClusterer,wekaData);
 
-        System.out.println("parsed Clusterer to Class = " + wekaClustererToClassifier);
+//        System.out.println("parsed Clusterer to Class = " + wekaClustererToClassifier);
 
         parsedCode = CreateParsedGMM.GMM(wekaClustererToClassifier);
 

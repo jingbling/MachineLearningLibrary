@@ -16,7 +16,7 @@ public class parseEM {
         // Split input string to parse
         String[] inputSplit = clustererToClass.split("\n");
         String[] tempMeanLine, tempStdDevLine;
-        Integer counter = 0, icounter=0,numClusters = 0, currPointer=0;
+        int counter = 0, icounter=0,numClusters = 0, currPointer=0;
 
         // First define needed variables
         output.append("String classifier;"+String.format("%n"));
@@ -35,12 +35,12 @@ public class parseEM {
                     numClusters = Integer.parseInt(inputSplit[counter].substring(currPointer).trim());
 //                    System.out.println("Number of Clusters is "+numClusters);
                     // Setup initial parameters
-                    output.append("Integer numClusters ="+numClusters+String.format("%n"));
-                    output.append("String[] clusterClassMap = new String[numClusters];"+String.format("%n"));
-                    output.append("Double[] zValue = new Double [numClusters];"+String.format("%n"));
-                    output.append("Double[] currMean = new Double [numClusters];"+String.format("%n"));
-                    output.append("Double[] currStdDev = new Double [numClusters];"+String.format("%n"));
-                    output.append("Integer[] clusterMatch= new Integer [numClusters];"+String.format("%n%n"));
+                    output.append(String.format("int numClusters = %d;%n",numClusters));
+                    output.append(String.format("String[] clusterClassMap = new String[numClusters];%n"));
+                    output.append(String.format("double[] zValue = new double[numClusters];%n"));
+                    output.append(String.format("double[] currMean = new double[numClusters];%n"));
+                    output.append(String.format("double[] currStdDev = new double[numClusters];%n"));
+                    output.append(String.format("int[] clusterMatch= new int[numClusters];%n%n"));
                 }
                 // Then build and evaluate the gaussian curves for each attribute
                 if (inputSplit[counter+1].contains("mean")) {
@@ -53,7 +53,7 @@ public class parseEM {
 //                    System.out.println("size of mean line is:"+String.format("%d",tempMeanLine.length));
 //                    System.out.println("size of StdDev line is:"+String.format("%d",tempStdDevLine.length));
                     for (icounter = 0;icounter<numClusters;icounter++) {
-                        System.out.println("Mean line split: "+tempMeanLine[icounter+2]);
+//                        System.out.println("Mean line split: "+tempMeanLine[icounter+2]);
                         output.append("currMean["+icounter+"]="+tempMeanLine[icounter+2]+String.format(";%n"));
                         output.append("currStdDev["+icounter+"]="+tempStdDevLine[icounter+3]+String.format(";%n"));
                     }
@@ -87,7 +87,7 @@ public class parseEM {
         output.append(String.format("    if (clusterMatch[i]>clusterMatch[bestZMatchIndex])%n"));
         output.append(String.format("        bestZMatchIndex = i;%n"));
         output.append(String.format("}%n"));
-        output.append(String.format("classifier=clusterMatch[bestZMatchIndex];%n"));
+        output.append(String.format("classifier=clusterClassMap[bestZMatchIndex];%n"));
         output.append(String.format("return classifier;%n"));
 
 

@@ -31,14 +31,14 @@ public class runWekaModelClusterer {
         }
         clu.setOptions(classifierArgs);
 
-        System.out.println("completed set options, running clusterer");
+//        System.out.println("completed set options, running clusterer");
 
         clu.buildClusterer(wekaInputClusterer);
 //        System.out.println(cls);
 
         cluOutput = clu.toString();
 
-        System.out.println("output of clusterer: " + cluOutput);
+        System.out.println("from runWekaModelClusterer, output of clusterer: " + cluOutput);
 
         return clu;
 

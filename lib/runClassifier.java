@@ -12,6 +12,7 @@ import wekaInterface.runWekaModelClassifier;
  * Date: 11/25/12
  * Time: 8:37 PM
  * Test file to create J48 tree classifier
+ *  Example input: C:\Users\Jing\VMWareShare\ActDataSubject1_train.arff ActDataSubj1.java -testargs -1 -2
  */
 public class runClassifier {
 

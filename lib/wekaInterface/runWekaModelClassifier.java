@@ -29,7 +29,7 @@ public class runWekaModelClassifier {
 
         clsOutput = cls.toString();
 
-        System.out.println("output of cls: " + clsOutput);
+        System.out.println("from runWekaModelClassifier, output of cls: " + clsOutput);
 
         return cls;
 

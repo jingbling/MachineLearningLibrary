@@ -23,7 +23,7 @@ public class parseTree {
         ArrayList BayesArrayList = new ArrayList();
 
         //define needed variables
-        modLine.append("String classifier;"+String.format("%n"));
+        modLine.append("String classifier= null;"+String.format("%n"));
 
 //        System.out.println("classifier chosen: "+ classifier + " found = "+ TreeArrayList.contains(classifier));
 //        System.out.println("inputSplit.length: "+ inputSplit.length );
@@ -121,6 +121,23 @@ public class parseTree {
             }
 
         }
+        // final check on if there are any parens to close
+        // After finished reading file, need to close out any remaining ifs
+
+        if (numIfs < prevIfs) {
+            // need to close out open ifs
+            for (icount=prevIfs;icount>numIfs;icount--) {
+                for (i=icount-1;i>0;i--){
+                    modLine.append("    ");
+                }
+                modLine.append(String.format("}%n"));
+            }
+        }
+//        System.out.println(String.format("remaining ifs to close: %d", numIfs));
+//        System.out.println(String.format("prev ifs to close: %d", prevIfs));
+
+        modLine.append(String.format("return classifier;%n"));
+
         return modLine;
     }
 }

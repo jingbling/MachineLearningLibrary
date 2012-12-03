@@ -51,9 +51,9 @@ public class createClassFile {
             FileWriter fstream = new FileWriter(outputFile);
             BufferedWriter out = new BufferedWriter(fstream);
             out.write("public class "+ FilenameUtils.removeExtension(outputFile)+ String.format("{ %n"));
-            out.write("    public "+ FilenameUtils.removeExtension(outputFile)+ String.format("{ %n"));
-            out.write("        //constructor - empty for now"+String.format("%n    }%n"));
-            out.write("    public String RunTree(");
+//            out.write("    public "+ FilenameUtils.removeExtension(outputFile)+ String.format("{ %n"));
+//            out.write("        //constructor - empty for now"+String.format("%n    }%n"));
+            out.write("    public String RunClassifier(");
             // Write parameters as variable declarations, expected in [type name] pairs
             // e.g. double length
             for (icount=0;icount<parameters.length; icount=icount+2) {
