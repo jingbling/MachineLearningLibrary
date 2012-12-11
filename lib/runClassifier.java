@@ -3,6 +3,7 @@ import utilities.createClassFile;
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 import wekaInterface.createWekaStructure;
+import wekaInterface.runWeka;
 import wekaInterface.runWekaModelClassifier;
 
 
@@ -16,7 +17,7 @@ import wekaInterface.runWekaModelClassifier;
  */
 public class runClassifier {
 
-    public static void main(String[] args) throws Exception {
+    public static String main(String[] args) throws Exception {
 
 //        String fileInput = "WekaOutLargeNum.txt";
 //        String fileInput = "WekaOutputStatesRandomTree.txt";
@@ -36,7 +37,7 @@ public class runClassifier {
         runWekaModelClassifier CreateWekaClassifier = new runWekaModelClassifier();
         parseTree CreateParsedTree = new parseTree();
         createClassFile NewOutputCodeFile = new createClassFile();
-
+        runWeka wekaClassifierInterface = new runWeka();
         try {
             // arg[0] = input file name
             fileInput = args[0].toString();
@@ -77,16 +78,14 @@ public class runClassifier {
 //        System.out.println("
 //        System.out.println(", actual: " + wekaData.classAttribute().value((int) wekaData.instance(0).classValue()));
 
-        NewOutputCodeFile.writeJavaFile(parsedTree, attributeArgs, fileOutput);
+//        NewOutputCodeFile.writeJavaFile(parsedTree, attributeArgs, fileOutput);
 
-//
-//        // Call subroutine to parse input file
-//        createdTree = ParseTree(fileInput, 2);
-//        System.out.println(createdTree);
-
-        // Call subroutine to write output file
-//        writeJavaFile(createdTree, args, fileOutput);
-
+        // Test running classifier on example inputs  - assume that the inputs would be passed in by a call
+        // This section is just a proof of concept.
+        String[] sampleInput = {"576.337988","544.907779"};
+        classifierName = wekaClassifierInterface.runClassifyInstance(wekaClassifier, wekaData, sampleInput);
+        System.out.println("input classified as: " + classifierName);
+        return classifierName;
     }
 
 }
